@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# Nested Sortable
+This is a small library used for creating a sortable nested list.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Screenshot
+![image](https://github.com/nuttrtools/nested-sortable/assets/37809353/48df3748-a22e-4a5a-bd59-a07693edd433)
 
-Currently, two official plugins are available:
+## Usage
+https://github.com/nuttrtools/nested-sortable/blob/5c8989a15223e8fe1e549d0850050dd42d17266c/src/App.tsx#L7
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Start demo
+```
+git clone https://github.com/nuttrtools/nested-sortable
+cd nested-sortable && npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Storybook
+https://master--5fc05e08a4a65d0021ae0bf2.chromatic.com/?path=/story/examples-tree-sortable--all-features
+
