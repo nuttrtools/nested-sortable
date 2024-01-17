@@ -1,6 +1,5 @@
 {
-  "name": "nested-sortable",
-  "private": true,
+  "name": "@nuttrtools/nested-sortable",
   "version": "0.5.0",
   "type": "module",
   "main": "./dist/ns.umd.js",
