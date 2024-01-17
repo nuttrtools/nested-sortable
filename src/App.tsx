@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <NestedSortable collapsible/>
+      <NestedSortable collapsible onOrderChange={(newItems) => console.log(newItems)}/>
     </>
   )
 }

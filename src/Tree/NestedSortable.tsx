@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import {
   Announcements,
@@ -41,27 +41,31 @@ import {CSS} from '@dnd-kit/utilities';
 
 const initialItems: TreeItems = [
   {
-    id: 'Home',
+    id: 'id1',
+    name: 'Home',
     children: [],
   },
   {
-    id: 'Collections',
+    id: 'id2',
+    name: 'Collections',
     children: [
-      {id: 'Spring', children: []},
-      {id: 'Summer', children: []},
-      {id: 'Fall', children: []},
-      {id: 'Winter', children: []},
+      {id: 'id3', name: 'Spring', children: []},
+      {id: 'id4', name: 'Summer', children: []},
+      {id: 'id5', name: 'Fall', children: []},
+      {id: 'id6', name: 'Winter', children: []},
     ],
   },
   {
-    id: 'About Us',
+    id: 'id7',
+    name: 'About Us',
     children: [],
   },
   {
-    id: 'My Account',
+    id: 'id8',
+    name: 'My Account',
     children: [
-      {id: 'Addresses', children: []},
-      {id: 'Order History', children: []},
+      {id: 'id9', name: 'Addresses', children: []},
+      {id: 'id10', name: 'Order History', children: []},
     ],
   },
 ];
@@ -101,6 +105,7 @@ interface Props {
   indentationWidth?: number;
   indicator?: boolean;
   removable?: boolean;
+  onOrderChange: (items: TreeItems) => void;
 }
 
 export function NestedSortable({
@@ -109,6 +114,7 @@ export function NestedSortable({
   indicator = false,
   indentationWidth = 50,
   removable,
+  onOrderChange
 }: Props) {
   const [items, setItems] = useState(() => defaultItems);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -119,14 +125,19 @@ export function NestedSortable({
     overId: UniqueIdentifier;
   } | null>(null);
 
+  useEffect(() => {
+    onOrderChange(items)
+  }, [items, onOrderChange])
+
   const flattenedItems = useMemo(() => {
     const flattenedTree = flattenTree(items);
-    const collapsedItems = flattenedTree.reduce<string[]>(
+    const collapsedItems = flattenedTree.reduce<UniqueIdentifier[]>(
       (acc, {children, collapsed, id}) =>
         collapsed && children.length ? [...acc, id] : acc,
       []
     );
 
+    
     return removeChildrenOf(
       flattenedTree,
       activeId ? [activeId, ...collapsedItems] : collapsedItems
@@ -201,11 +212,11 @@ export function NestedSortable({
       onDragCancel={handleDragCancel}
     >
       <SortableContext items={sortedIds} strategy={verticalListSortingStrategy}>
-        {flattenedItems.map(({id, children, collapsed, depth}) => (
+        {flattenedItems.map(({id, name, children, collapsed, depth}) => (
           <SortableTreeItem
             key={id}
             id={id}
-            value={id}
+            text={name}
             depth={id === activeId && projected ? projected.depth : depth}
             indentationWidth={indentationWidth}
             indicator={indicator}
@@ -229,7 +240,7 @@ export function NestedSortable({
                 depth={activeItem.depth}
                 clone
                 childCount={getChildCount(items, activeId) + 1}
-                value={activeId.toString()}
+                text={activeId.toString()}
                 indentationWidth={indentationWidth}
               />
             ) : null}
