@@ -2,7 +2,7 @@
 This is a small library used for creating a sortable nested list.
 
 ## NPM package
-https://www.npmjs.com/package/@nuttrtools/nested-sortable
+[@nuttrtools/nested-sortable](https://www.npmjs.com/package/@nuttrtools/nested-sortable)
 
 ## Screenshot
 ![image](https://github.com/nuttrtools/nested-sortable/assets/37809353/48df3748-a22e-4a5a-bd59-a07693edd433)
