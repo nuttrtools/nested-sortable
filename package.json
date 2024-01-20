@@ -1,11 +1,16 @@
 {
   "name": "@nuttrtools/nested-sortable",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "type": "module",
   "main": "./dist/ns.umd.js",
   "module": "./dist/ns.es.js",
   "types": "./dist/index.d.ts",
+  "files": ["dist"],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuttrtools/nested-sortable"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -33,10 +38,15 @@
     "vite-plugin-dts": "^3.7.1",
     "vite-plugin-lib-inject-css": "^1.3.0"
   },
+  "peerDependencies": {
+    "@types/react": "^18.2.43"
+  },
   "exports": {
     ".": {
       "import": "./dist/ns.es.js",
-      "require": "./dist/ns.umd.js"
+      "require": "./dist/ns.umd.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/ns.es.js"
     }
   }
 }
