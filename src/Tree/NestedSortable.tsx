@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useRef, useState} from 'react';
+import {CSSProperties, useEffect, useMemo, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import {
   Announcements,
@@ -105,6 +105,7 @@ interface Props {
   indentationWidth?: number;
   indicator?: boolean;
   removable?: boolean;
+  itemStyle?: CSSProperties
   onOrderChange: (items: TreeItems) => void;
 }
 
@@ -114,7 +115,8 @@ export function NestedSortable({
   indicator = false,
   indentationWidth = 50,
   removable,
-  onOrderChange
+  onOrderChange,
+  itemStyle = {}
 }: Props) {
   const [items, setItems] = useState(() => defaultItems);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -227,6 +229,7 @@ export function NestedSortable({
                 : undefined
             }
             onRemove={removable ? () => handleRemove(id) : undefined}
+            itemStyle={itemStyle}
           />
         ))}
         {createPortal(
@@ -242,6 +245,7 @@ export function NestedSortable({
                 childCount={getChildCount(items, activeId) + 1}
                 text={activeId.toString()}
                 indentationWidth={indentationWidth}
+                itemStyle={itemStyle}
               />
             ) : null}
           </DragOverlay>,
