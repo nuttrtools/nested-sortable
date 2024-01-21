@@ -311,7 +311,11 @@ export function NestedSortable({
   }
 
   function handleRemove(id: UniqueIdentifier) {
-    setItems((items) => removeItem(items, id));
+    setItems((items) => {
+      const newItems = removeItem(items, id)
+      onOrderChange(newItems)
+      return newItems
+    });
   }
 
   function handleCollapse(id: UniqueIdentifier) {
