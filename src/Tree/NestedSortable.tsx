@@ -105,7 +105,8 @@ interface Props {
   indentationWidth?: number;
   indicator?: boolean;
   removable?: boolean;
-  itemStyle?: CSSProperties
+  itemStyle?: CSSProperties;
+  actionNode?: JSX.Element;
   onOrderChange: (items: TreeItems) => void;
 }
 
@@ -116,7 +117,8 @@ export function NestedSortable({
   indentationWidth = 50,
   removable,
   onOrderChange,
-  itemStyle = {}
+  itemStyle = {},
+  actionNode
 }: Props) {
   const [items, setItems] = useState(() => defaultItems);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -226,6 +228,7 @@ export function NestedSortable({
             }
             onRemove={removable ? () => handleRemove(id) : undefined}
             itemStyle={itemStyle}
+            actionNode={actionNode}
           />
         ))}
         {createPortal(
@@ -242,6 +245,7 @@ export function NestedSortable({
                 text={activeId.toString()}
                 indentationWidth={indentationWidth}
                 itemStyle={itemStyle}
+                actionNode={actionNode}
               />
             ) : null}
           </DragOverlay>,
