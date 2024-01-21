@@ -127,10 +127,6 @@ export function NestedSortable({
     overId: UniqueIdentifier;
   } | null>(null);
 
-  useEffect(() => {
-    onOrderChange(items)
-  }, [items, onOrderChange])
-
   const flattenedItems = useMemo(() => {
     const flattenedTree = flattenTree(items);
     const collapsedItems = flattenedTree.reduce<UniqueIdentifier[]>(
@@ -296,6 +292,7 @@ export function NestedSortable({
       const sortedItems = arrayMove(clonedItems, activeIndex, overIndex);
       const newItems = buildTree(sortedItems);
 
+      onOrderChange(newItems)
       setItems(newItems);
     }
   }
