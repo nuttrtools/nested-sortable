@@ -1,4 +1,4 @@
-import React, {forwardRef, HTMLAttributes, FC} from 'react';
+import React, {forwardRef, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { Action } from '../Action';
@@ -23,7 +23,7 @@ export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, 'id'> {
   onCollapse?(): void;
   onRemove?(): void;
   wrapperRef?(node: HTMLLIElement): void;
-  ActionNode?: JSX.Element
+  ActionNode?: React.ElementType;
 }
 
 export const TreeItem = forwardRef<HTMLDivElement, Props>(

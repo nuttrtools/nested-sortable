@@ -9,7 +9,7 @@ import {iOS} from '../../utilities';
 interface Props extends TreeItemProps {
   id: UniqueIdentifier;
   itemStyle?: CSSProperties,
-  actionNode?: JSX.Element
+  actionNode?: React.ElementType
 }
 
 const animateLayoutChanges: AnimateLayoutChanges = ({isSorting, wasDragging}) =>

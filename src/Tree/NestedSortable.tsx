@@ -106,7 +106,7 @@ interface Props {
   indicator?: boolean;
   removable?: boolean;
   itemStyle?: CSSProperties;
-  actionNode?: JSX.Element;
+  actionNode?: React.ElementType;
   onOrderChange: (items: TreeItems) => void;
 }
 
@@ -129,7 +129,7 @@ export function NestedSortable({
     overId: UniqueIdentifier;
   } | null>(null);
 
-  const flattenedItems = useMemo(() => {
+  const flattenedItems = (() => {
     const flattenedTree = flattenTree(items);
     const collapsedItems = flattenedTree.reduce<UniqueIdentifier[]>(
       (acc, {children, collapsed, id}) =>
@@ -142,7 +142,7 @@ export function NestedSortable({
       flattenedTree,
       activeId ? [activeId, ...collapsedItems] : collapsedItems
     );
-  }, [activeId, items]);
+  })();
   const projected =
     activeId && overId
       ? getProjection(
