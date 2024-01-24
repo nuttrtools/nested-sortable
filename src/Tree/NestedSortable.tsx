@@ -1,4 +1,4 @@
-import {CSSProperties, useEffect, useMemo, useRef, useState} from 'react';
+import {CSSProperties, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import {
   Announcements,
@@ -167,9 +167,7 @@ export function NestedSortable({
     })
   );
 
-  const sortedIds = useMemo(() => flattenedItems.map(({id}) => id), [
-    flattenedItems,
-  ]);
+  const sortedIds = flattenedItems.map(({id}) => id);
   const activeItem = activeId
     ? flattenedItems.find(({id}) => id === activeId)
     : null;
