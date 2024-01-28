@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      <NestedSortable defaultItems={items} collapsible onOrderChange={(newItems) => console.log(newItems)} itemStyle={itemStyle}/>
+      <NestedSortable itemClicked={(id: string) => console.log(id)} removable defaultItems={items} collapsible onOrderChange={(newItems) => console.log(newItems)} itemStyle={itemStyle}/>
     </>
   )
 }

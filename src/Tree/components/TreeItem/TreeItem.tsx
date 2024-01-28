@@ -23,6 +23,7 @@ export interface Props extends Omit<HTMLAttributes<HTMLLIElement>, 'id'> {
   onCollapse?(): void;
   onRemove?(): void;
   wrapperRef?(node: HTMLLIElement): void;
+	itemClicked: Function;
   ActionNode?: React.ElementType;
 }
 
@@ -45,6 +46,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
       style,
       text,
       wrapperRef,
+			itemClicked,
       ActionNode,
       ...props
     },
@@ -81,7 +83,7 @@ export const TreeItem = forwardRef<HTMLDivElement, Props>(
               {collapseIcon}
             </Action>
           )}
-          <span className={styles.Text}>{text}</span>
+          <span className={styles.Text} onClick={() => itemClicked(id)}>{text}</span>
           {
             ActionNode && <ActionNode id={id}/>
           }

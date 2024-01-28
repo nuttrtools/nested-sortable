@@ -107,6 +107,7 @@ interface Props {
   removable?: boolean;
   itemStyle?: CSSProperties;
   actionNode?: React.ElementType;
+	itemClicked: Function;
   onOrderChange: (items: TreeItems) => void;
 }
 
@@ -118,6 +119,7 @@ export function NestedSortable({
   removable,
   onOrderChange,
   itemStyle = {},
+	itemClicked,
   actionNode
 }: Props) {
   const [items, setItems] = useState(() => defaultItems);
@@ -225,6 +227,7 @@ export function NestedSortable({
                 : undefined
             }
             onRemove={removable ? () => handleRemove(id) : undefined}
+						itemClicked={itemClicked}
             itemStyle={itemStyle}
             actionNode={actionNode}
           />
@@ -243,6 +246,7 @@ export function NestedSortable({
                 text={activeId.toString()}
                 indentationWidth={indentationWidth}
                 itemStyle={itemStyle}
+								itemClicked={itemClicked}
                 actionNode={actionNode}
               />
             ) : null}

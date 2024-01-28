@@ -8,14 +8,15 @@ import {iOS} from '../../utilities';
 
 interface Props extends TreeItemProps {
   id: UniqueIdentifier;
-  itemStyle?: CSSProperties,
-  actionNode?: React.ElementType
+  itemStyle?: CSSProperties;
+	itemClicked: Function;
+  actionNode?: React.ElementType;
 }
 
 const animateLayoutChanges: AnimateLayoutChanges = ({isSorting, wasDragging}) =>
   isSorting || wasDragging ? false : true;
 
-export function SortableTreeItem({id, depth, itemStyle = {}, actionNode, ...props}: Props) {
+export function SortableTreeItem({id, depth, itemStyle = {}, itemClicked, actionNode, ...props}: Props) {
   const {
     attributes,
     isDragging,
@@ -46,6 +47,7 @@ export function SortableTreeItem({id, depth, itemStyle = {}, actionNode, ...prop
       disableSelection={iOS}
       disableInteraction={isSorting}
       ActionNode={actionNode}
+			itemClicked={itemClicked}
       handleProps={{
         ...attributes,
         ...listeners,
